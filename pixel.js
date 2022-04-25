@@ -14,6 +14,8 @@ sequelize.sync({ force: false })
     console.error(err);
   });
 
+app.use(express.json()); 
+app.use(express.urlencoded( {extended : false } ));
   
 app.use('/', indexRouter);
 app.use('/user', usersRouter);

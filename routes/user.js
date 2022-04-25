@@ -6,6 +6,7 @@ const router = express.Router();
 router.route('/login')
   .post(async (req, res, next) => {
     try {
+      console.log(req.body)
       const user = await User.findAll({
         attributes: ['email',req.body.email]
       })

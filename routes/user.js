@@ -39,15 +39,34 @@ router.route('/login')
   router.route('/singup')
     .post(async (req, res, next)=>{
       try{
-        const user=await User.create({
-          email: req.body.email,
-          password: req.body.password,
-          name: req.body.name
-        });
+        if(req.body.email!=null && req.body.password!=null && req.body.name!=null){
 
+          const exist = await User.findOne({
+            where:{email:req.body.email}
+          })
+          if(req.body.email==exist.email){
+            console.log("이미 가입")
+            res.sendStatus(400);
+          }
+          else{
+            const user=await User.create({
+              email: req.body.email,
+              password: req.body.password,
+              name: req.body.name
+            
+              });
+            console.log("등록됨")
+            res.sendStatus(200);
+          }
+        }
+        else{
+          console.log("에러임")
+          res.sendStatus(400);
+        }
       }catch(err){
         console.error(err);
         next(err);
+        
       }
     });
 

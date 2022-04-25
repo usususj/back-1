@@ -1,7 +1,32 @@
 {
   "dependencies": {
+    "express": "^4.17.3",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.19.0"
+    "nunjucks": "^3.2.3",
+    "sequelize": "^6.19.0",
+    "sequelize-cli": "^6.4.1"
+  },
+  "name": "pixelback",
+  "description": "2022 덕성여자대학교 졸업프로젝트 \"수락\" / backend",
+  "version": "1.0.0",
+  "main": "pixel.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node pixel.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pixel-2022/back.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pixel-2022/back/issues"
+  },
+  "homepage": "https://github.com/Pixel-2022/back#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

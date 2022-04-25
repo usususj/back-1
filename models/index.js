@@ -1,3 +1,4 @@
+var fs = require("fs");
 const path = require('path');
 const Sequelize = require('sequelize');
 const User = require('./user');

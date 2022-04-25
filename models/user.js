@@ -5,19 +5,19 @@ module.exports = class User extends Sequelize.Model {
         type: Sequelize.INTEGER,
         allowNull: false,
         unique: true,
-      },
-      email: {
-        type: Sequelize.STRING(50),
-        allowNull: false,
-      },
-      password: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-      },
-      name: {
-        type: Sequelize.STRING(30),
-        allowNull: true,
-      },
+        },
+        email: {
+          type: Sequelize.STRING(50),
+          allowNull: false,
+        },
+        password: {
+          type: Sequelize.STRING(100),
+          allowNull: false,
+        },
+        name: {
+          type: Sequelize.STRING(30),
+          allowNull: true,
+        },
     }, {
       sequelize,
       timestamps: false,

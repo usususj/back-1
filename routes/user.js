@@ -36,4 +36,19 @@ router.route('/login')
     }
   });
 
+  router.route('/singup')
+    .post(async (req, res, next)=>{
+      try{
+        const user=await User.create({
+          email: req.body.email,
+          password: req.body.password,
+          name: req.body.name
+        });
+
+      }catch(err){
+        console.error(err);
+        next(err);
+      }
+    });
+
 module.exports = router;

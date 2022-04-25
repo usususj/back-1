@@ -1,4 +1,5 @@
 const express = require('express');
+const { e } = require('nunjucks/src/filters');
 const User = require('../models/user');
 
 const router = express.Router();
@@ -44,7 +45,8 @@ router.route('/login')
           const exist = await User.findOne({
             where:{email:req.body.email}
           })
-          if(req.body.email==exist.email){
+          if(exist!=null){
+         
             console.log("이미 가입")
             res.sendStatus(400);
           }
@@ -58,7 +60,9 @@ router.route('/login')
             console.log("등록됨")
             res.sendStatus(200);
           }
-        }
+    
+        }   
+        
         else{
           console.log("에러임")
           res.sendStatus(400);

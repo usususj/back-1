@@ -48,7 +48,7 @@ router.route('/login')
 
 
   //회원가입
-  router.route('/singup')
+  router.route('/signup')
     .post(async (req, res, next)=>{
       try{
 
@@ -123,7 +123,7 @@ router.route('/login')
           from: 'PIXEL',
           to: req.body.email,
           subject: '[수락:손의 즐거움] 회원가입 인증 메일입니다.',
-          text: '오른쪽 인증번호를 입력해주세요' + Checking
+          text: '오른쪽 인증번호를 입력해주세요 : ' + Checking
         };
 
         smtpTransport.sendMail(mailOptions, function(error, info){

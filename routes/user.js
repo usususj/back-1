@@ -106,7 +106,7 @@ router.route('/login')
           service: "gmail",
           auth: {
               user: "tjwjdus@gmail.com",
-              pass: "1031uskohsj*"
+              pass: "*"
           },
           tls: {
               rejectUnauthorized: false

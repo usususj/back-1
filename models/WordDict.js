@@ -1,24 +1,23 @@
 const Sequelize = require('sequelize');
-module.exports = class VIDEO extends Sequelize.Model {
+module.exports = class WordDict extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
-        VideoID: {
-            autoIncrement: true,
-            type: Sequelize.INTEGER,
+        Word: {
+            type: Sequelize.STRING(50),
             allowNull: false,
             primaryKey: true,
-        },
-        videoname:{
-          type: Sequelize.STRING(50),
-          allowNull: false,
         },
         videoURL: {
           type: Sequelize.STRING(300),
           allowNull: false,
         },
+        wordImg: {
+          type: Sequelize.STRING(300),
+          allowNull: true,
+        },
         Motion: {
-          type: Sequelize.FLOAT(100),
-          allowNull: false,
+          type: Sequelize.FLOAT,
+          allowNull: true,
         },
         
     }, {

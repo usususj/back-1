@@ -1,13 +1,22 @@
 const express = require('express');
 const { e } = require('nunjucks/src/filters');
 const WordList = require('../models/WordList');
+const WordDict = require('../models/WordDict');
 
 
 const router = express.Router();
 
-router.route('/dictAll').get(async(req, res, next) =>{
+router.route('/listAll').post(async(req, res, next) =>{
     try{
-        const wordAll=await WordDict.findAll();
+        const wordAll=await WordList.findAll({
+            where:{
+                UserId: req
+            },
+            include:[{
+                model: WordDict,
+                required: false,
+            }]
+        });
         res.status(201).json(wordAll);
     }catch (err) {
         console.error(err);
@@ -15,34 +24,33 @@ router.route('/dictAll').get(async(req, res, next) =>{
       }
 })
 
-router.route('/word').get(async(req, res, next) =>{
-    try{
-        const wordDict = await WordDict.findOne({
-            where:{Word:req.body.Word}
+router.route('/listAdd').post(async(req,res,next) =>{
+    try {
+        const list= await WordList.create({
+            UserId: req.body.UserId,
+            Word: req.body.Word,
         })
-        if(wordDict!=null){
-            const videoObj={
-                Word : wordDict.Word,
-                videoURL: wordDict.videoURL,
-                wordImg: wordDict.wordImg,
-                Motion : wordDict.Motion
-            }
-            console.log(videoObj);
-            res.status(201).json(videoObj);
-        }
-        else{
-            console.log("단어 없음");
-            res.sendStatus(404);
-        }
-    }catch (err) {
+        res.sendStatus(200);
+    } catch (error) {
         console.error(err);
         next(err);
-      }
-
-
-
+    }
 })
 
+router.route('/listDel').post(async(req,res,next) =>{
+    try {
+        WordList.destroy({
+            where: {
+                UserId: req.body.UserId,
+                Word: req.body.Word,
+            }
+        })
+        res.sendStatus(200);
+    } catch (error) {
+        console.error(err);
+        next(err);
+    }
+})
 
   
     

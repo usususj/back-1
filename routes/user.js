@@ -103,10 +103,12 @@ router.route('/login')
       try{
       
         const smtpTransport = nodemailer.createTransport({
-          service: "gmail",
+          service: "Naver",
+          host: "smtp.naver.com",
+          port: 587,
           auth: {
-              user: "tjwjdus@gmail.com",
-              pass: "*"
+              user: "lip0603@naver.com",
+              pass: "1031uskohsj*"
           },
           tls: {
               rejectUnauthorized: false

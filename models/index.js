@@ -3,7 +3,6 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const User = require('./user');
 const WordDict = require("./WordDict");
-const wordDict = require('./WordDict');
 const wordList=require('./WordList');
 
 const env = process.env.NODE_ENV || 'development';
@@ -11,6 +10,18 @@ const config = require('../config/config')[env];
 const db = {};
 
 const sequelize = new Sequelize(config.database, config.username, config.password, config);
+
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
+db.User = User;
+db.wordDict = WordDict;
+db.wordList=wordList;
+
+User.init(sequelize);
+WordDict.init(sequelize);
+wordList.init(sequelize);
+
 
 User.hasMany(wordList,{
     foreignKey:'UserId',
@@ -34,15 +45,4 @@ wordList.belongsTo(WordDict,{
     foreignKey: 'Word'
 })
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-db.User = User;
-db.wordDict = wordDict;
-db.wordList=wordList;
-
-User.init(sequelize);
-wordDict.init(sequelize);
-wordList.init(sequelize);
-
-module.exports = db;
+module.exports = {db,sequelize,Sequelize,wordList,WordDict};
